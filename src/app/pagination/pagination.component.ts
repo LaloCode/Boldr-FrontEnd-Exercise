@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item, SwaggerWorkResponse } from '../interfaces/works.interfaces';
 import { SwaggerService } from '../services/swagger.service';
 
 @Component({
@@ -7,11 +8,19 @@ import { SwaggerService } from '../services/swagger.service';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent implements OnInit {
+  displayedColumns: string[] = ['title', 'publisher', 'URL'];
+  public workList: Item[] = [];
+
   constructor(private swaggerService: SwaggerService) {}
 
   ngOnInit(): void {
     this.swaggerService.getWorksList().subscribe((resp) => {
-      console.log(resp.message.items);
+      this.workList = resp.message.items;
+      console.log(this.workList);
     });
+  }
+
+  goToLink(url: string) {
+    window.open(url, '_blank');
   }
 }
