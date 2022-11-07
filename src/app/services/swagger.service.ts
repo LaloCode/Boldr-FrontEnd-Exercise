@@ -12,7 +12,7 @@ export class SwaggerService {
 
   constructor( private http: HttpClient ) { }
 
-  getWorksList(): Observable<SwaggerWorkResponse> {
-    return this.http.get<SwaggerWorkResponse>(`${ this.url }`)
+  getWorksList( offset: number ): Observable<SwaggerWorkResponse> {
+    return this.http.get<SwaggerWorkResponse>(`${ this.url }?offset=${offset}`)
   }
 }

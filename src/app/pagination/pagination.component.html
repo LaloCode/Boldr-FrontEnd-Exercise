@@ -1,19 +1,36 @@
 <table mat-table [dataSource]="workList" class="mat-elevation-z8">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let element">{{ element.title ? element.title : 'N/A' }}</td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.title ? element.title : "N/A" }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="publisher">
     <th mat-header-cell *matHeaderCellDef>Publisher</th>
-    <td mat-cell *matCellDef="let element">{{ element.publisher ? element.publisher : 'N/A' }}</td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.publisher ? element.publisher : "N/A" }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="URL">
     <th mat-header-cell *matHeaderCellDef>More information</th>
-    <td mat-cell *matCellDef="let element"><a href='' (click)="goToLink(element.URL)">{{ element.URL ? element.URL : 'N/A' }}</a></td>
+    <td mat-cell *matCellDef="let element">
+      <a href="" (click)="goToLink(element.URL)">{{
+        element.URL ? element.URL : "N/A"
+      }}</a>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  aria-label="Select page"
+  (page)="OnPageChange($event)"
+>
+</mat-paginator>
